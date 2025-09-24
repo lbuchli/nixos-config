@@ -89,24 +89,12 @@
     isNormalUser = true;
     description = "Lukas";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
   };
 
-  programs.niri.enable = true;
-  # Install firefox.
   programs.firefox.enable = true;
   programs.vim.enable = true;
 
   
-  services.emacs = {
-    enable = true;
-    defaultEditor = true;
-    package = pkgs.emacs30;
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
