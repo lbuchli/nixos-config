@@ -90,8 +90,11 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  # TODO this should be in user.nix
+  programs.zsh.enable = true;
   users.users.lukas = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     description = "Lukas";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
@@ -105,6 +108,10 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
+    qgis
+
+    openssl.dev
+
     # emacs dependencies
     ripgrep
     coreutils
@@ -112,10 +119,18 @@
     clang
     cmake
     gnumake
-
-    emacs-all-the-icons-fonts
-    fontconfig
+    pkg-config
   ];
+
+  fonts = {
+    fontDir.enable = true;
+    fontconfig.enable = true;
+    packages = with pkgs; [
+      meslo-lgs-nf
+      fira-code
+      emacs-all-the-icons-fonts
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -129,6 +144,7 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+  services.locate.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
