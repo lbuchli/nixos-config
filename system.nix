@@ -111,7 +111,12 @@
 
     qgis
 
+    openssl
     openssl.dev
+
+    tree
+    gotop
+    killall
 
     # emacs dependencies
     ripgrep
