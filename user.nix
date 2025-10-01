@@ -62,8 +62,12 @@
     
     programs.git = {
       enable = true;
+      lfs.enable = true;
+
       userName = "Lukas Buchli";
       userEmail = "lukas.buchli@ost.ch";
+
+      extraConfig.core.editor = "vim";
     };
 
 
