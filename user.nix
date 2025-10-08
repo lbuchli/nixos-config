@@ -7,8 +7,8 @@
     ];
 
     home.sessionPath = [
-      "~/.config/emacs/bin"
-      "~/.cargo/bin"
+      "\${xdg.configHome}/emacs/bin"
+      "$HOME/.cargo/bin"
     ];
 
     nixpkgs.overlays = [

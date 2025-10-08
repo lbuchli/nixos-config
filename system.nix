@@ -111,6 +111,8 @@
 
     qgis
 
+    libreoffice-fresh
+
     openssl
     openssl.dev
 
