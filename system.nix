@@ -106,12 +106,18 @@
   
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; let
+    qgisExt = qgis.override { extraPythonPackages = (ps: [ ps.pillow ]); };
+  in [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
 
-    qgis
+    qgisExt
 
     libreoffice-fresh
+
+    inkscape
+
+    handbrake
 
     openssl
     openssl.dev
@@ -119,6 +125,7 @@
     tree
     gotop
     killall
+    file
 
     # emacs dependencies
     ripgrep
@@ -128,6 +135,7 @@
     cmake
     gnumake
     pkg-config
+    pandoc
   ];
 
   fonts = {
