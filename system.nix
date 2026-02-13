@@ -119,6 +119,8 @@
 
     handbrake
 
+    keepassxc
+
     openssl
     openssl.dev
 
@@ -128,14 +130,6 @@
     file
 
     # emacs dependencies
-    ripgrep
-    coreutils
-    fd 
-    clang
-    cmake
-    gnumake
-    pkg-config
-    pandoc
   ];
 
   fonts = {

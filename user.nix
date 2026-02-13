@@ -1,9 +1,32 @@
 {
   useUserPackages = true;
-  users.lukas = { config, pkgs, ... }: {
+  users.lukas = { config, lib, pkgs, ... }: {
     home.username = "lukas";
     home.homeDirectory = "/home/lukas";
-    home.packages = [  
+    home.packages = with pkgs; [
+      #emacs dependencies
+      ripgrep
+      coreutils
+      fd
+      clang
+      cmake
+      gnumake
+      pkg-config
+      pandoc
+      tinymist # typst lsp
+    ];
+
+    xdg.configFile = let
+      inherit (config.lib.file) mkOutOfStoreSymlink;
+      inherit (lib) flatten flip pipe map mergeAttrsList;
+      link = name: {
+        ${name} = {
+          source = config.lib.file.mkOutOfStoreSymlink "${./.}/dotfiles/${name}";
+          recursive = true;
+        };
+      };
+    in  (flip pipe) [(map link) mergeAttrsList] [
+      "doom"
     ];
 
     home.sessionPath = [
