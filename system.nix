@@ -137,6 +137,8 @@
       meslo-lgs-nf
       fira-code
       emacs-all-the-icons-fonts
+      liberation_ttf
+      liberation-sans-narrow
     ];
   };
 
