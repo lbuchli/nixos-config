@@ -128,8 +128,6 @@
     gotop
     killall
     file
-
-    # emacs dependencies
   ];
 
   fonts = {

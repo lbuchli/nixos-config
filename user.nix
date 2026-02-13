@@ -13,9 +13,11 @@
       gnumake
       pkg-config
       pandoc
+      typst
       tinymist # typst lsp
     ];
 
+    # link files from this repo to ~/.config/
     xdg.configFile = let
       inherit (config.lib.file) mkOutOfStoreSymlink;
       inherit (lib) flatten flip pipe map mergeAttrsList;
