@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ fenix }: { config, pkgs, ... }:
 
 {
 
@@ -102,7 +102,8 @@
   programs.firefox.enable = true;
   programs.vim.enable = true;
 
-  
+  nixpkgs.overlays = [ fenix.overlays.default ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; let
@@ -127,6 +128,15 @@
     gotop
     killall
     file
+
+    (fenix.packages.x86_64-linux.latest.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
+    rust-analyzer-nightly
   ];
 
   fonts = {

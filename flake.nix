@@ -18,23 +18,8 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [
         ./hardware-configuration.nix
-        ./system.nix
+        (import ./system.nix { fenix = fenix; })
         home-manager.nixosModules.home-manager { home-manager = import ./user.nix; }
-        
-        # TODO extract to own file
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [ fenix.overlays.default ];
-          environment.systemPackages = with pkgs; [
-            (fenix.packages.x86_64-linux.stable.withComponents [
-              "cargo"
-              "clippy"
-              "rust-src"
-              "rustc"
-              "rustfmt"
-            ])
-            rust-analyzer-nightly
-          ];
-        })
       ];
     };
   };
