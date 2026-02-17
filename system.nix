@@ -25,6 +25,16 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true; # show battery status of connected devices
+      };
+    };
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
 
