@@ -1,4 +1,4 @@
-{
+{ hostname }: {
   useUserPackages = true;
   users.lukas = { config, lib, pkgs, ... }: {
     home.username = "lukas";
@@ -64,7 +64,7 @@
 
       shellAliases = {
         ll = "ls -alh";
-        nixos-switch = "sudo nixos-rebuild --flake /home/lukas/nixos-config switch";
+        nixos-switch = "sudo nixos-rebuild --flake /home/lukas/nixos-config#${hostname} switch";
       };
 
     };
