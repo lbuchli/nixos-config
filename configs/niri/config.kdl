@@ -393,7 +393,7 @@ binds {
     Mod+E hotkey-overlay-title="Open Text Editor: Emacs" { spawn "emacs"; }
     Mod+Return hotkey-overlay-title="Open popup terminal: Yakuake" { spawn "yakuake"; }
     Mod+D hotkey-overlay-title="App Launcher" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen" {  spawn "noctalia" "lockscreen" "lock"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen" {  spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
