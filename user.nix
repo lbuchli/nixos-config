@@ -1,7 +1,11 @@
-{ hostname }: let username = "lukas"; in {
+{ hostname, noctalia }: let username = "lukas"; in {
 
   useUserPackages = true;
   users.${username} = { config, lib, pkgs, ... }: {
+    imports = [
+      noctalia.homeModules.default
+    ];
+
     home.username = username;
     home.homeDirectory = "/home/${username}";
     home.packages = with pkgs; [
@@ -35,7 +39,7 @@
       inherit (lib) flatten flip pipe map mergeAttrsList;
       link = name: {
         ${name} = {
-          source = config.lib.file.mkOutOfStoreSymlink "${./.}/dotfiles/${name}";
+          source = config.lib.file.mkOutOfStoreSymlink "${./.}/configs/${name}";
           recursive = true;
         };
       };
@@ -65,6 +69,7 @@
       }))
     ]; 
 
+    programs.noctalia-shell = import ./configs/niri-noctalia.nix;
     programs.bash.enable = false;
     programs.zsh = {
       enable = true;
@@ -75,8 +80,6 @@
         enable = true;
         plugins = [
           { name = "zsh-users/zsh-autosuggestions"; }
-          #{ name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
-          #{ name = "powerlevel10k-config"; file = ./dotfiles/.p10k.zsh; }
         ];
       };
 
@@ -115,10 +118,11 @@
       enable = true;
       lfs.enable = true;
 
-      userName = "Lukas Buchli";
-      userEmail = "lukas.buchli@ost.ch";
-
-      extraConfig.core.editor = "vim";
+      settings = {
+        user.name = "Lukas Buchli";
+        user.email = "lukas.buchli@ost.ch";
+        core.editor = "vim";
+      };
     };
 
 
@@ -132,14 +136,6 @@
       enableSshSupport = true;
     };
 
-    gtk = {
-      enable = true;
-      theme = {
-        name = "Breeze-Dark";
-        package = pkgs.libsForQt5.breeze-gtk;
-      };
-    };
-  
     # The state version is required and should stay at the version you
     # originally installed.
     home.stateVersion = "25.05";

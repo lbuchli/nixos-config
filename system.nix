@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ fenix, hostname }: { config, pkgs, ... }:
+{ config, pkgs, fenix, hostname, ... }:
 
 {
 
@@ -149,10 +149,6 @@
       "rustfmt"
     ])
     rust-analyzer-nightly
-
-    # niri
-    fuzzel
-    swaylock
   ];
 
   fonts = {

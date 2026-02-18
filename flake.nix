@@ -2,26 +2,35 @@
   description = "System configuration flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, fenix, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, fenix, noctalia, ... }@inputs: {
     nixosConfigurations = let 
       hosts = [ "dubbo" "ifs" ];
       config = hostname: {
         ${hostname} = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit hostname; inherit (inputs) fenix; };
           modules = [
             ./hardware/${hostname}.nix
-            (import ./system.nix { fenix = fenix; hostname = hostname; })
-            home-manager.nixosModules.home-manager { home-manager = import ./user.nix { hostname = hostname; }; }
+            ./system.nix
+            home-manager.nixosModules.home-manager {
+              home-manager = import ./user.nix { inherit hostname; inherit (inputs) noctalia; };
+            }
           ];
         };
       };
