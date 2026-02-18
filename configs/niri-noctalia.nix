@@ -41,7 +41,7 @@
        ];
      };
    };
-   colorSchemes.predefinedScheme = "Monochrome";
+   colorSchemes.predefinedScheme = "Ayu";
    general = {
      avatarImage = "/home/drfoobar/.face";
      radiusRatio = 0.2;
