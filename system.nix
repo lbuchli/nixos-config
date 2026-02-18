@@ -121,16 +121,11 @@
   environment.systemPackages = with pkgs; let
     qgisExt = qgis.override { extraPythonPackages = (ps: [ ps.pillow ]); };
   in [
-    vim
-
+    # "Applications"
     qgisExt
-
     libreoffice-fresh
-
     inkscape
-
     handbrake
-
     keepassxc
 
     openssl
@@ -140,7 +135,9 @@
     gotop
     killall
     file
+    vim
 
+    # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
       "cargo"
       "clippy"

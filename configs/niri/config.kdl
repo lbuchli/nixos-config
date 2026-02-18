@@ -390,6 +390,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: Konsole" { spawn "konsole"; }
+    Mod+E hotkey-overlay-title="Open Text Editor: Emacs" { spawn "emacs"; }
     Mod+Return hotkey-overlay-title="Open popup terminal: Yakuake" { spawn "yakuake"; }
     Mod+D hotkey-overlay-title="App Launcher" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
