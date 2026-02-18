@@ -151,7 +151,8 @@
     rust-analyzer-nightly
 
     # niri
-    fuzzel
+    kdePackages.yakuake
+    libsForQt5.kglobalaccel
   ];
 
   fonts = {

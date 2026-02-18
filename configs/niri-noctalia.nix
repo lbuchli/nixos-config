@@ -9,7 +9,8 @@
        left = [
          {
            id = "ControlCenter";
-           useDistroLogo = true;
+           useDistroLogo = false;
+           logo = "home";
          }
          {
            id = "Network";
@@ -43,12 +44,41 @@
    };
    colorSchemes.predefinedScheme = "Ayu";
    general = {
-     avatarImage = "/home/drfoobar/.face";
+     avatarImage = "";
      radiusRatio = 0.2;
    };
    location = {
      monthBeforeDay = false;
      name = "Zurich, Switzerland";
    };
+ };
+
+ plugins = {
+   sources = [
+     {
+       enabled = true;
+       name = "Official Noctalia Plugins";
+       url = "https://github.com/noctalia-dev/noctalia-plugins";
+     }
+   ];
+   states = {
+     kde-connect = {
+       enabled = true;
+       sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+     };
+     privacy-indicator = {
+       enabled = true;
+       sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+     };
+     activate-linux = {
+       enabled = true;
+       sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+     };
+   };
+   version = 2;
+ };
+ # this may also be a string or a path to a JSON file.
+
+ pluginSettings = {
  };
 }
