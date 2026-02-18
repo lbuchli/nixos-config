@@ -136,6 +136,12 @@
 
     programs.emacs = {
       enable = true;
+      package = pkgs.emacs-pgtk;
+    };
+
+    services.emacs = {
+      enable = true;
+      defaultEditor = true;
     };
   
     services.gpg-agent = {

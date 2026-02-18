@@ -10,13 +10,19 @@
          {
            id = "ControlCenter";
            useDistroLogo = false;
-           logo = "home";
+           icon = "home";
          }
          {
            id = "Network";
          }
          {
            id = "Bluetooth";
+         }
+         {
+           id = "plugin:kde-connect";
+         }
+         {
+           id = "plugin:privacy-indicator";
          }
        ];
        center = [
@@ -67,10 +73,6 @@
        sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
      };
      privacy-indicator = {
-       enabled = true;
-       sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-     };
-     activate-linux = {
        enabled = true;
        sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
      };
