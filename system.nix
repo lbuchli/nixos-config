@@ -116,17 +116,12 @@
 
   nixpkgs.overlays = [ fenix.overlays.default ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
-    "010editor"
-  ];
-
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; let
     qgisExt = qgis.override { extraPythonPackages = (ps: [ ps.pillow ]); };
   in [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
 
     qgisExt
 
@@ -154,6 +149,10 @@
       "rustfmt"
     ])
     rust-analyzer-nightly
+
+    # niri
+    fuzzel
+    swaylock
   ];
 
   fonts = {
