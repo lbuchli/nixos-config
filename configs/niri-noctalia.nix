@@ -48,6 +48,12 @@
        ];
      };
    };
+   appLauncher = {
+     enableClipboardHistory = true;
+     terminalCommand = "konsole -e";
+     showCategories = false;
+     density = "normal";
+   };
    colorSchemes.predefinedScheme = "Ayu";
    general = {
      avatarImage = "";
