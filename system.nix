@@ -149,6 +149,9 @@
       "rustfmt"
     ])
     rust-analyzer-nightly
+
+    # niri
+    fuzzel
   ];
 
   fonts = {
