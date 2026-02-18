@@ -56,7 +56,7 @@
           fi
         ''}";
       };
-    }] ++ map link [ "doom" ]);
+    }] ++ map link [ "doom" "niri" ]);
 
     nixpkgs.overlays = [
       (import (builtins.fetchTarball {
@@ -130,6 +130,14 @@
       enable = true;
       defaultCacheTtl = 1800;
       enableSshSupport = true;
+    };
+
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Breeze-Dark";
+        package = pkgs.libsForQt5.breeze-gtk;
+      };
     };
   
     # The state version is required and should stay at the version you
