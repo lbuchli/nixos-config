@@ -180,6 +180,9 @@
   # services.openssh.enable = true;
   services.locate.enable = true;
 
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

@@ -70,6 +70,13 @@
     ]; 
 
     programs.noctalia-shell = import ./configs/niri-noctalia.nix;
+    home.file."wallpaper.jpg".source = config.lib.file.mkOutOfStoreSymlink ./images/wallpaper.jpg;
+    home.file.".cache/noctalia/wallpapers.json" = {
+      text = builtins.toJSON {
+        defaultWallpaper = "/home/${username}/wallpaper.jpg";
+      };
+    };
+
     programs.bash.enable = false;
     programs.zsh = {
       enable = true;
