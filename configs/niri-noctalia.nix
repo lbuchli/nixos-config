@@ -2,8 +2,8 @@
  enable = true;
  settings = {
    bar = {
-     density = "compact";
-     position = "right";
+     density = "normal";
+     position = "left";
      showCapsule = false;
      widgets = {
        left = [

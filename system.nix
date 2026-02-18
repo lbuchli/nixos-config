@@ -127,6 +127,7 @@
     inkscape
     handbrake
     keepassxc
+    nextcloud-client
 
     openssl
     openssl.dev
