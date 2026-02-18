@@ -70,6 +70,7 @@
     ]; 
 
     programs.noctalia-shell = import ./configs/niri-noctalia.nix;
+    # wallpaper from https://unsplash.com/photos/aerial-view-of-pine-trees-in-mist-OYFHT4X5isg
     home.file."wallpaper.jpg".source = config.lib.file.mkOutOfStoreSymlink ./images/wallpaper.jpg;
     home.file.".cache/noctalia/wallpapers.json" = {
       text = builtins.toJSON {
