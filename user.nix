@@ -1,8 +1,9 @@
-{ hostname }: {
+{ hostname }: let username = "lukas"; in {
+
   useUserPackages = true;
-  users.lukas = { config, lib, pkgs, ... }: {
-    home.username = "lukas";
-    home.homeDirectory = "/home/lukas";
+  users.${username} = { config, lib, pkgs, ... }: {
+    home.username = username;
+    home.homeDirectory = "/home/${username}";
     home.packages = with pkgs; [
       #emacs dependencies
       ripgrep
@@ -17,6 +18,17 @@
       tinymist # typst lsp
     ];
 
+    home = {
+      sessionVariables = {
+        DOOMDIR = "${config.xdg.configHome}/doom";
+        DOOMLOCALDIR = "${config.xdg.configHome}/doom-local";
+      };
+      sessionPath = [
+        "${config.xdg.configHome}/emacs/bin"
+        "$HOME/.cargo/bin"
+      ];
+    };
+
     # link files from this repo to ~/.config/
     xdg.configFile = let
       inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -27,14 +39,24 @@
           recursive = true;
         };
       };
-    in  (flip pipe) [(map link) mergeAttrsList] [
-      "doom"
-    ];
-
-    home.sessionPath = [
-      "\${xdg.configHome}/emacs/bin"
-      "$HOME/.cargo/bin"
-    ];
+    in mergeAttrsList ([{
+      "emacs" = {
+        source = builtins.fetchGit {
+          url = "https://github.com/hlissner/doom-emacs";
+          rev = "74d1b871b75fb19feefa2722628aecfe0b828e79"; # 18.02.2026
+        };
+        onChange = "${pkgs.writeShellScript "doom-change" ''
+          export PATH="/etc/profiles/per-user/lukas/bin":$PATH # emacs location
+          export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
+          export DOOMLOCALDIR="${config.home.sessionVariables.DOOMLOCALDIR}"
+          if [ ! -d "$DOOMLOCALDIR" ]; then
+            ${config.xdg.configHome}/emacs/bin/doom -y install
+          else
+            ${config.xdg.configHome}/emacs/bin/doom -y sync -u
+          fi
+        ''}";
+      };
+    }] ++ map link [ "doom" ]);
 
     nixpkgs.overlays = [
       (import (builtins.fetchTarball {

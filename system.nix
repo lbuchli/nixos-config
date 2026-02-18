@@ -99,6 +99,8 @@
     # storageDriver = "btrfs"; # if using btrfs
   };
 
+  programs.niri.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # TODO this should be in user.nix
   programs.zsh.enable = true;
@@ -113,6 +115,11 @@
   programs.vim.enable = true;
 
   nixpkgs.overlays = [ fenix.overlays.default ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "010editor"
+  ];
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
