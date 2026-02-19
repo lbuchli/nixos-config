@@ -130,6 +130,7 @@
         user.name = "Lukas Buchli";
         user.email = "lukas.buchli@ost.ch";
         core.editor = "vim";
+        init.defaultBranch = "main";
       };
     };
 

@@ -137,6 +137,7 @@
     killall
     file
     vim
+    python315
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
