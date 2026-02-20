@@ -1,4 +1,4 @@
-{ hostname, noctalia }: let username = "lukas"; in {
+{ hostname, noctalia, emacs-overlay }: let username = "lukas"; in {
 
   useUserPackages = true;
   users.${username} = { config, lib, pkgs, ... }: {
@@ -62,12 +62,9 @@
       };
     }] ++ map link [ "doom" "niri" ]);
 
-    nixpkgs.overlays = [
-      (import (builtins.fetchTarball {
-        url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-        sha256 = "sha256:13ghh3ma9rjanqa48b558x9kcz6h983rnc3l8j5my7lv85mc434w";
-      }))
-    ]; 
+    nixpkgs.overlays =  [
+      emacs-overlay.overlay
+    ];
 
     programs.noctalia-shell = import ./configs/niri-noctalia.nix;
     # wallpaper from https://unsplash.com/photos/aerial-view-of-pine-trees-in-mist-OYFHT4X5isg

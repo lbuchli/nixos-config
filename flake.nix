@@ -17,6 +17,11 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, fenix, noctalia, ... }@inputs: {
@@ -29,7 +34,7 @@
             ./hardware/${hostname}.nix
             ./system.nix
             home-manager.nixosModules.home-manager {
-              home-manager = import ./user.nix { inherit hostname; inherit (inputs) noctalia; };
+              home-manager = import ./user.nix { inherit hostname; inherit (inputs) noctalia emacs-overlay; };
             }
           ];
         };
