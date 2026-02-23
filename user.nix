@@ -26,6 +26,7 @@
       sessionVariables = {
         DOOMDIR = "${config.xdg.configHome}/doom";
         DOOMLOCALDIR = "${config.xdg.configHome}/doom-local";
+        NIXOS_OZONE_WL = "1"; # for codium to work on wayland
       };
       sessionPath = [
         "${config.xdg.configHome}/emacs/bin"
@@ -131,10 +132,19 @@
       };
     };
 
-
     programs.emacs = {
       enable = true;
       package = pkgs.emacs-pgtk;
+    };
+
+    programs.vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      profiles.default.extensions = with pkgs.vscode-extensions; [
+        dracula-theme.theme-dracula
+        vscodevim.vim
+        james-yu.latex-workshop
+      ];
     };
 
     services.emacs = {

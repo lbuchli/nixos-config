@@ -138,6 +138,8 @@
     file
     vim
     python315
+    pandoc
+    wget
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
@@ -152,6 +154,8 @@
     # niri
     kdePackages.yakuake
     libsForQt5.kglobalaccel
+
+    (texlive.combine { inherit (texlive) scheme-full; })
   ];
 
   fonts = {
