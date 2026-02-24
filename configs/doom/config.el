@@ -107,3 +107,15 @@
                    ,(eglot-alternatives `(,typst-ts-lsp-download-path
                                           "tinymist"
                                           "typst-lsp"))))))
+
+;; org-remark keybindings
+(map! :leader
+      (:prefix "n"
+       :desc "View org tags" "T" #'org-tags-view
+       :desc "View org agenda" "A" #'org-agenda
+       :desc "Annotate region" "a" #'annotate-annotate
+       :desc "Annotations overview" "o" #'annotate-show-annotation-summary
+       :desc "Skip to next annotation" "]" #'annotate-goto-next-annotation
+       :desc "Skip to previous annotation" "[" #'annotate-goto-previous-annotation
+       :desc "Move annotation" "m" #'annotate-change-annotation-text-position
+       :desc "Remove annotation" "r" #'annotate-delete-annotation))
