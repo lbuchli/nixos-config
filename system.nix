@@ -154,6 +154,7 @@
     # niri
     kdePackages.yakuake
     libsForQt5.kglobalaccel
+    xwayland-satellite
 
     (texlive.combine { inherit (texlive) scheme-full; })
   ];
