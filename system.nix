@@ -128,6 +128,7 @@
     handbrake
     keepassxc
     nextcloud-client
+    kdePackages.filelight
 
     openssl
     openssl.dev
