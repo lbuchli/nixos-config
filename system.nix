@@ -195,7 +195,7 @@
   programs.virt-manager.enable = settings.hasVirtualization;
   virtualisation.libvirtd = pkgs.lib.optionalAttrs settings.hasVirtualization {
       enable = true;
-      qemuSwtpm = true;
+      qemu.swtpm.enable = true;
   };
   virtualisation.spiceUSBRedirection.enable = settings.hasVirtualization;
 
