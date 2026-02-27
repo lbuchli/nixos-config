@@ -1,4 +1,4 @@
-{ hostname, noctalia, emacs-overlay }: let username = "lukas"; in {
+{ hostname, settings, noctalia, emacs-overlay }: let username = "lukas"; in {
 
   useUserPackages = true;
   users.${username} = { config, lib, pkgs, ... }: {
@@ -32,6 +32,14 @@
         "${config.xdg.configHome}/emacs/bin"
         "$HOME/.cargo/bin"
       ];
+    };
+
+    dconf.settings = {
+    } // pkgs.lib.optionalAttrs settings.hasVirtualization {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
     };
 
     # link files from this repo to ~/.config/

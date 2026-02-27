@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, fenix, hostname, ... }:
+{ config, pkgs, fenix, hostname, settings, ... }:
 
 {
 
@@ -108,7 +108,8 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "Lukas";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ]
+      ++ pkgs.lib.optional settings.hasVirtualization "libvirtd";
   };
 
   programs.firefox.enable = true;
@@ -158,7 +159,8 @@
     xwayland-satellite
 
     (texlive.combine { inherit (texlive) scheme-full; })
-  ];
+  ]
+    ++ pkgs.lib.optional settings.hasVirtualization swtpm;
 
   fonts = {
     fontDir.enable = true;
@@ -189,6 +191,13 @@
 
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
+
+  programs.virt-manager.enable = settings.hasVirtualization;
+  virtualisation.libvirtd = pkgs.lib.optionalAttrs settings.hasVirtualization {
+      enable = true;
+      qemuSwtpm = true;
+  };
+  virtualisation.spiceUSBRedirection.enable = settings.hasVirtualization;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

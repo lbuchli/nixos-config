@@ -27,14 +27,16 @@
   outputs = { self, nixpkgs, home-manager, fenix, noctalia, ... }@inputs: {
     nixosConfigurations = let 
       hosts = [ "dubbo" "ifs" ];
-      config = hostname: {
+      config = hostname: let
+        settings = import ./settings.nix { inherit hostname; };
+      in {
         ${hostname} = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit hostname; inherit (inputs) fenix; };
+          specialArgs = { inherit hostname; inherit settings; inherit (inputs) fenix; };
           modules = [
             ./hardware/${hostname}.nix
             ./system.nix
             home-manager.nixosModules.home-manager {
-              home-manager = import ./user.nix { inherit hostname; inherit (inputs) noctalia emacs-overlay; };
+              home-manager = import ./user.nix { inherit hostname; inherit settings; inherit (inputs) noctalia emacs-overlay; };
             }
           ];
         };
