@@ -130,6 +130,7 @@
     keepassxc
     nextcloud-client
     kdePackages.filelight
+    godot
 
     openssl
     openssl.dev
