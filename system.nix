@@ -117,6 +117,10 @@
 
   nixpkgs.overlays = [ fenix.overlays.default ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "geogebra"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; let
@@ -131,6 +135,7 @@
     nextcloud-client
     kdePackages.filelight
     godot
+    geogebra6
 
     openssl
     openssl.dev
@@ -159,7 +164,10 @@
     libsForQt5.kglobalaccel
     xwayland-satellite
 
+    # latex
     (texlive.combine { inherit (texlive) scheme-full; })
+    texlivePackages.latexindent
+    texlivePackages.chktex
   ]
     ++ pkgs.lib.optional settings.hasVirtualization swtpm;
 
