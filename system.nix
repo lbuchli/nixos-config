@@ -139,6 +139,7 @@
 
     openssl
     openssl.dev
+    libtool
 
     tree
     gotop
