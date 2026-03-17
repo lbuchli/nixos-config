@@ -92,7 +92,10 @@
      (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-     (typst "https://github.com/uben0/tree-sitter-typst" "master")))
+     (typst "https://github.com/uben0/tree-sitter-typst" "master")
+     (duckdb "https://github.com/Ariyn/tree-sitter-duckdb")))
+
+(setq treesit-load-name-override-list '((duckdb "libtree-sitter-duckdb" "tree_sitter_sql")))
 
 (mapc (lambda (lang)
         (unless (treesit-language-available-p (car lang))

@@ -148,6 +148,7 @@
     python315
     pandoc
     wget
+    unzip
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
