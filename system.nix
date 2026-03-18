@@ -136,6 +136,8 @@
     kdePackages.filelight
     godot
     geogebra6
+    pdfpc
+    wl-mirror
 
     openssl
     openssl.dev
