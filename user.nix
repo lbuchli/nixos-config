@@ -48,6 +48,11 @@
       inherit (lib) flatten flip pipe map mergeAttrsList;
       link = name: {
         ${name} = {
+          # TODO link writable with
+          # home.file.".config/myfile" = {
+          #   source = /path/to/your/file;
+          #   writable = true;
+          # };
           source = config.lib.file.mkOutOfStoreSymlink "${./.}/configs/${name}";
           recursive = true;
         };
@@ -69,7 +74,7 @@
           fi
         ''}";
       };
-    }] ++ map link [ "doom" "niri" ]);
+    }] ++ map link [ "doom" "niri" "zed" ]);
 
     nixpkgs.overlays =  [
       emacs-overlay.overlay
@@ -138,6 +143,10 @@
         core.editor = "vim";
         init.defaultBranch = "main";
       };
+    };
+
+    programs.zed-editor = {
+      enable = true;
     };
 
     programs.emacs = {

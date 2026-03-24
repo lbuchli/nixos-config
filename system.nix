@@ -152,6 +152,7 @@
     pandoc
     wget
     unzip
+    nix-search
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
