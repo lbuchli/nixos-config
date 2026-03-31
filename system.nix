@@ -6,7 +6,10 @@
 
 {
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "lukas" ];
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
