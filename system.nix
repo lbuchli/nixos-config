@@ -141,7 +141,7 @@
     geogebra6
     pdfpc
     wl-mirror
-    apidog
+    hoppscotch
 
     openssl
     openssl.dev
