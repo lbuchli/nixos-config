@@ -127,7 +127,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; let
-    qgisExt = qgis.override { extraPythonPackages = (ps: [ ps.pillow ]); };
+    qgisExt = qgis.override { extraPythonPackages = (ps: [ ps.pillow ps.duckdb ]); };
   in [
     # "Applications"
     qgisExt
@@ -141,6 +141,7 @@
     geogebra6
     pdfpc
     wl-mirror
+    apidog
 
     openssl
     openssl.dev
