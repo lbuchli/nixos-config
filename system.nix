@@ -157,6 +157,7 @@
     wget
     unzip
     nix-search
+    maxima
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
@@ -216,6 +217,8 @@
       qemu.swtpm.enable = true;
   };
   virtualisation.spiceUSBRedirection.enable = settings.hasVirtualization;
+
+  programs.nix-ld.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

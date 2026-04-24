@@ -31,6 +31,7 @@
 ;;
 (package! org-roam)
 (package! annotate)
+(package! maxima)
 ;; (package! org-remark)
 
 ;; If you'd like to disable a package included with Doom, you can do so here
