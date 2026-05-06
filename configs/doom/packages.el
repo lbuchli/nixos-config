@@ -32,6 +32,10 @@
 (package! org-roam)
 (package! annotate)
 (package! maxima)
+(package! souffle-mode
+   :recipe (:host github :repo "gbalats/souffle-mode"
+           ))
+
 ;; (package! org-remark)
 
 ;; If you'd like to disable a package included with Doom, you can do so here

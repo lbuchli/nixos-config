@@ -159,6 +159,7 @@
     unzip
     nix-search
     maxima
+    souffle
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
