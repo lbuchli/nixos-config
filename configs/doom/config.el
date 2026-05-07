@@ -122,3 +122,7 @@
        :desc "Skip to previous annotation" "[" #'annotate-goto-previous-annotation
        :desc "Move annotation" "m" #'annotate-change-annotation-text-position
        :desc "Remove annotation" "r" #'annotate-delete-annotation))
+
+;; agent-shell
+(setq agent-shell-goose-authentication
+      (agent-shell-make-goose-authentication :none t))

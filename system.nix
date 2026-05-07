@@ -18,6 +18,9 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  zramSwap.enable = settings.usesZramSwap;
+  systemd.oomd.enable = settings.usesZramSwap; # recommended when using zram swap
+
   networking.hostName = hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -160,6 +163,7 @@
     nix-search
     maxima
     souffle
+    goose-cli
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
@@ -212,6 +216,13 @@
 
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
+
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-vulkan;
+    # Optional: preload models, see https://ollama.com/library
+    loadModels = [ "qwen3.6" ];
+  };
 
   programs.virt-manager.enable = settings.hasVirtualization;
   virtualisation.libvirtd = pkgs.lib.optionalAttrs settings.hasVirtualization {

@@ -36,6 +36,10 @@
    :recipe (:host github :repo "gbalats/souffle-mode"
            ))
 
+(package! shell-maker)
+(package! acp)
+(package! agent-shell)
+
 ;; (package! org-remark)
 
 ;; If you'd like to disable a package included with Doom, you can do so here
