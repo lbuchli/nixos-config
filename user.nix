@@ -1,4 +1,4 @@
-{ hostname, settings, noctalia, emacs-overlay }: let username = "lukas"; in {
+{ hostname, settings, noctalia, doom-emacs, emacs-overlay }: let username = "lukas"; in {
 
   useUserPackages = true;
   users.${username} = { config, lib, pkgs, ... }: {
@@ -59,10 +59,7 @@
       };
     in mergeAttrsList ([{
       "emacs" = {
-        source = builtins.fetchGit {
-          url = "https://github.com/hlissner/doom-emacs";
-          rev = "74d1b871b75fb19feefa2722628aecfe0b828e79"; # 18.02.2026
-        };
+        source = doom-emacs;
         onChange = "${pkgs.writeShellScript "doom-change" ''
           export PATH="/etc/profiles/per-user/lukas/bin":$PATH # emacs location
           export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"

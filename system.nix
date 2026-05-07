@@ -18,7 +18,12 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  zramSwap.enable = settings.usesZramSwap;
+  zramSwap = {
+    enable = settings.usesZramSwap;
+    priority = 100; # Higher than disk swap to prefer zram
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
   systemd.oomd.enable = settings.usesZramSwap; # recommended when using zram swap
 
   networking.hostName = hostname; # Define your hostname.
