@@ -3,5 +3,5 @@
 {
   hasVirtualization = [ "ifs" ];
   hasProprietaryNvidiaDrivers = [ ];
-  usesZramSwap = [ "ifs" ];
+  usesZramSwap = [ "dubbo" ];
 })
