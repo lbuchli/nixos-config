@@ -124,5 +124,6 @@
        :desc "Remove annotation" "r" #'annotate-delete-annotation))
 
 ;; agent-shell
-(setq agent-shell-goose-authentication
-      (agent-shell-make-goose-authentication :none t))
+(with-eval-after-load 'agent-shell
+    (setq agent-shell-goose-authentication
+        (agent-shell-make-goose-authentication :none t)))
