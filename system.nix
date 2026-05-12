@@ -150,7 +150,7 @@
     pdfpc
     wl-mirror
     hoppscotch
-    (import ./recipes/typos.nix { inherit pkgs; inherit lib; })
+    # (import ./recipes/typos.nix { inherit pkgs; inherit lib; })
 
     openssl
     openssl.dev
