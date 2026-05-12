@@ -155,6 +155,7 @@
     openssl
     openssl.dev
     libtool
+    docker-buildx
 
     tree
     gotop
