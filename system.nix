@@ -151,6 +151,7 @@
     wl-mirror
     hoppscotch
     # (import ./recipes/typos.nix { inherit pkgs; inherit lib; })
+    thunderbird
 
     openssl
     openssl.dev
@@ -170,6 +171,8 @@
     maxima
     souffle
     goose-cli
+    gnupg
+    pinentry-curses
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
@@ -228,6 +231,12 @@
     package = pkgs.ollama-vulkan;
     # Optional: preload models, see https://ollama.com/library
     loadModels = [ "qwen3.6" ];
+  };
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
   };
 
   programs.virt-manager.enable = settings.hasVirtualization;
