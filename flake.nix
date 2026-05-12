@@ -22,11 +22,6 @@
       url = "github:doomemacs/doomemacs";
       flake = false;
     };
-
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { self, nixpkgs, home-manager, fenix, noctalia, ... }@inputs: {
@@ -41,7 +36,7 @@
             ./hardware/${hostname}.nix
             ./system.nix
             home-manager.nixosModules.home-manager {
-              home-manager = import ./user.nix { inherit hostname; inherit settings; inherit (inputs) noctalia doom-emacs emacs-overlay; };
+              home-manager = import ./user.nix { inherit hostname; inherit settings; inherit (inputs) noctalia doom-emacs; };
             }
           ] ++ nixpkgs.lib.optional settings.hasProprietaryNvidiaDrivers ./topics/proprietary-nvidia-driver.nix;
         };

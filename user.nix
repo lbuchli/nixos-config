@@ -1,4 +1,4 @@
-{ hostname, settings, noctalia, doom-emacs, emacs-overlay }: let username = "lukas"; in {
+{ hostname, settings, noctalia, doom-emacs }: let username = "lukas"; in {
 
   useUserPackages = true;
   users.${username} = { config, lib, pkgs, ... }: {
@@ -69,13 +69,9 @@
           else
             ${config.xdg.configHome}/emacs/bin/doom sync -u --force
           fi
-        ''}";
+        ''}"
       };
     }] ++ map link [ "doom" "niri" "zed" ]);
-
-    nixpkgs.overlays =  [
-      emacs-overlay.overlay
-    ];
 
     programs.noctalia-shell = import ./configs/niri-noctalia.nix;
     # wallpaper from https://unsplash.com/photos/aerial-view-of-pine-trees-in-mist-OYFHT4X5isg
@@ -151,6 +147,11 @@
       package = pkgs.emacs-pgtk;
     };
 
+    services.emacs = {
+      enable = true;
+      defaultEditor = true;
+    };
+
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
@@ -159,11 +160,6 @@
         vscodevim.vim
         james-yu.latex-workshop
       ];
-    };
-
-    services.emacs = {
-      enable = true;
-      defaultEditor = true;
     };
   
     services.gpg-agent = {
