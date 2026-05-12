@@ -69,7 +69,7 @@
           else
             ${config.xdg.configHome}/emacs/bin/doom sync -u --force
           fi
-        ''}"
+        ''}";
       };
     }] ++ map link [ "doom" "niri" "zed" ]);
 
