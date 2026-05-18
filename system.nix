@@ -152,6 +152,8 @@
     hoppscotch
     # (import ./recipes/typos.nix { inherit pkgs; inherit lib; })
     thunderbird
+    gimp
+    anki
 
     openssl
     openssl.dev
