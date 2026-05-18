@@ -188,7 +188,7 @@
 
     # niri
     kdePackages.yakuake
-    libsForQt5.kglobalaccel
+    kdePackages.kglobalaccel
     xwayland-satellite
 
     # latex
