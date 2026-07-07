@@ -149,7 +149,7 @@
     geogebra6
     pdfpc
     wl-mirror
-    hoppscotch
+    bruno
     # (import ./recipes/typos.nix { inherit pkgs; inherit lib; })
     thunderbird
     gimp
