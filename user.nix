@@ -1,10 +1,12 @@
-{ hostname, settings, noctalia, doom-emacs }: let username = "lukas"; in {
+{ hostname, settings, noctalia, emacs-overlay, doom-emacs }: let username = "lukas"; in {
 
   useUserPackages = true;
   users.${username} = { config, lib, pkgs, ... }: {
     imports = [
       noctalia.homeModules.default
     ];
+
+    nixpkgs.overlays = [ emacs-overlay.overlays.default ];
 
     home.username = username;
     home.homeDirectory = "/home/${username}";
@@ -60,7 +62,7 @@
     in mergeAttrsList ([{
       "emacs" = {
         source = doom-emacs;
-        onChange = "${pkgs.writeShellScript "doom-change" ''
+        onChange = ''
           export PATH="/etc/profiles/per-user/lukas/bin":$PATH # emacs location
           export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
           export DOOMLOCALDIR="${config.home.sessionVariables.DOOMLOCALDIR}"
@@ -69,7 +71,7 @@
           else
             ${config.xdg.configHome}/emacs/bin/doom sync -u --force
           fi
-        ''}";
+        '';
       };
     }] ++ map link [ "doom" "niri" "zed" ]);
 
@@ -144,12 +146,13 @@
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs-pgtk;
+      package = pkgs.emacs-unstable-pgtk;
     };
 
     services.emacs = {
       enable = true;
       defaultEditor = true;
+      package = pkgs.emacs-unstable-pgtk;
     };
 
     programs.vscode = {

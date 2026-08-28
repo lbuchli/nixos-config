@@ -84,8 +84,4 @@
    };
    version = 2;
  };
- # this may also be a string or a path to a JSON file.
-
- pluginSettings = {
- };
 }
