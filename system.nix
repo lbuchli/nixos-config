@@ -70,6 +70,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
+  services.displayManager.defaultSession = pkgs.lib.mkForce "niri";
   services.desktopManager.plasma6.enable = true;
   programs.kdeconnect.enable = true;
 
@@ -192,9 +193,10 @@
     xwayland-satellite
 
     # latex
-    (texlive.combine { inherit (texlive) scheme-full; })
-    texlivePackages.latexindent
-    texlivePackages.chktex
+    (texliveSmall.withPackages (ps: [
+      ps.latexindent
+      ps.chktex
+    ]))
   ]
     ++ pkgs.lib.optional settings.hasVirtualization swtpm;
 

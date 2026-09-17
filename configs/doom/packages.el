@@ -12,7 +12,7 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
-(package! typst-ts-mode)
+;; (package! typst-ts-mode) ;; -- wait for https://codeberg.org/meow_king/typst-ts-mode/issues/103 to be resolved
 
 
 
