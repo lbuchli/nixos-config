@@ -173,7 +173,6 @@
     nix-search
     maxima
     souffle
-    goose-cli
     gnupg
     pinentry-curses
 

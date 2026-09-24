@@ -164,6 +164,30 @@
         james-yu.latex-workshop
       ];
     };
+
+    programs.opencode = {
+      enable = true;
+      settings = { # schema: https://opencode.ai/docs/config/
+        provider = {
+          llmhub = {
+            options = {
+              baseURL = "https://api.llmhub.infs.ai/v1";
+              models = [ "best-code" "best-chat" ];
+              apiKey = "{file:~/nixos-secrets/llmhub}";
+            };
+            models = {
+              "best-code" = { name = "best-code"; };
+              "best-chat" = { name = "best-chat"; };
+            };
+          };
+        };
+        autoupdate = false;
+        permission = {
+          edit = "ask";
+          bash = "ask";
+        };
+      };
+    };
   
     services.gpg-agent = {
       enable = true;
