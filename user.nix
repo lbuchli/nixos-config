@@ -50,16 +50,11 @@
       inherit (lib) flatten flip pipe map mergeAttrsList;
       link = name: {
         ${name} = {
-          # TODO link writable with
-          # home.file.".config/myfile" = {
-          #   source = /path/to/your/file;
-          #   writable = true;
-          # };
           source = config.lib.file.mkOutOfStoreSymlink "${./.}/configs/${name}";
           recursive = true;
         };
       };
-    in mergeAttrsList ([{
+    in mergeAttrsList (/* [{ # does not work anymore :( TODO find a solution. Right now: clone manually (git clone --depth 1 https://github.com/doomemacs/core ~/.config/emacs / ~/.config/emacs/bin/doom install)
       "emacs" = {
         source = doom-emacs;
         onChange = ''
@@ -73,7 +68,7 @@
           fi
         '';
       };
-    }] ++ map link [ "doom" "niri" "zed" ]);
+    }] ++ */ map link [ "doom" "niri" "zed" ]);
 
     programs.noctalia-shell = import ./configs/niri-noctalia.nix;
     # wallpaper from https://unsplash.com/photos/aerial-view-of-pine-trees-in-mist-OYFHT4X5isg
