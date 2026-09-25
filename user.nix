@@ -175,6 +175,15 @@
               "best-chat" = { name = "best-chat"; };
             };
           };
+          local-ollama = {
+            options = {
+              baseURL = "http://localhost:11434/v1";
+              models = [ "qwen3.6" ];
+            };
+            models = {
+              "qwen3.6" = { name = "qwen3.6"; };
+            };
+          };
         };
         autoupdate = false;
         permission = {
