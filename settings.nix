@@ -1,7 +1,8 @@
 { hostname }: (builtins.mapAttrs
-  (name: valueList: builtins.elem hostname valueList)
+  (name: config: config.${hostname} or config.default)
 {
-  hasVirtualization = [ "ifs" ];
-  hasProprietaryNvidiaDrivers = [ ];
-  usesZramSwap = [ "dubbo" "ifs" ];
+  hasVirtualization = { default = false; ifs = true; };
+  hasProprietaryNvidiaDrivers = { default = false; };
+  usesZramSwap = { default = true; };
+  localOllamaModels = { default = []; ifs = [ "qwen3.8" ]; };
 })

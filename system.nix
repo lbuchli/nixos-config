@@ -233,7 +233,7 @@
     enable = true;
     package = pkgs.ollama-vulkan;
     # Optional: preload models, see https://ollama.com/library
-    loadModels = [ "qwen3.6" ];
+    loadModels = settings.localOllamaModels;
   };
 
   services.pcscd.enable = true;

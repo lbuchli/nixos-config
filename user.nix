@@ -178,11 +178,12 @@
           local-ollama = {
             options = {
               baseURL = "http://localhost:11434/v1";
-              models = [ "qwen3.6" ];
+              models = settings.localOllamaModels;
             };
-            models = {
-              "qwen3.6" = { name = "qwen3.6"; };
-            };
+            models = builtins.listToAttrs (map (item: {
+                name = item;
+                value = { name = item; };
+            }) settings.localOllamaModels);
           };
         };
         autoupdate = false;
