@@ -84,9 +84,6 @@
   # Configure console keymap
   console.keyMap = "sg";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -248,6 +245,20 @@
       qemu.swtpm.enable = true;
   };
   virtualisation.spiceUSBRedirection.enable = settings.hasVirtualization;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+        cups-filters
+        cups-browsed
+    ];
+  };
 
   programs.nix-ld.enable = true;
 
