@@ -1,12 +1,10 @@
-{ hostname, settings, noctalia, emacs-overlay, doom-emacs }: let username = "lukas"; in {
+{ hostname, settings, noctalia, doom-emacs }: let username = "lukas"; in {
 
   useUserPackages = true;
   users.${username} = { config, lib, pkgs, ... }: {
     imports = [
       noctalia.homeModules.default
     ];
-
-    nixpkgs.overlays = [ emacs-overlay.overlays.default ];
 
     home.username = username;
     home.homeDirectory = "/home/${username}";
@@ -141,13 +139,13 @@
 
     programs.emacs = {
       enable = true;
-      package = pkgs.emacs-unstable-pgtk;
+      package = pkgs.emacs-pgtk;
     };
 
     services.emacs = {
       enable = true;
       defaultEditor = true;
-      package = pkgs.emacs-unstable-pgtk;
+      package = pkgs.emacs-pgtk;
     };
 
     programs.vscode = {
