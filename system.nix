@@ -172,6 +172,7 @@
     souffle
     gnupg
     pinentry-curses
+    poppler-utils
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
@@ -193,6 +194,9 @@
       ps.latexindent
       ps.chktex
     ]))
+
+    # remarkable file converter
+    (import ./recipes/rmc.nix { inherit pkgs; })
   ]
     ++ pkgs.lib.optional settings.hasVirtualization swtpm;
 
