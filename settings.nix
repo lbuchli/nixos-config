@@ -5,4 +5,5 @@
   hasProprietaryNvidiaDrivers = { default = false; };
   usesZramSwap = { default = true; };
   localOllamaModels = { default = []; ifs = [ "qwen3.8" ]; };
+  hasDemoUser = { default = false; dubbo = true; };
 })

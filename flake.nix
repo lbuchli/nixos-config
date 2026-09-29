@@ -36,7 +36,14 @@
             ./hardware/${hostname}.nix
             ./system.nix
             home-manager.nixosModules.home-manager {
-              home-manager = import ./user.nix { inherit hostname; inherit settings; inherit (inputs) noctalia doom-emacs; };
+              home-manager = {
+                useUserPackages = true;
+                users = {
+                    lukas = import ./users/lukas.nix { inherit hostname; inherit settings; inherit (inputs) noctalia doom-emacs; };
+                } // nixpkgs.lib.optionalAttrs settings.hasDemoUser {
+                    demo = import ./users/demo.nix;
+                };
+              };
             }
           ] ++ nixpkgs.lib.optional settings.hasProprietaryNvidiaDrivers ./topics/proprietary-nvidia-driver.nix;
         };
