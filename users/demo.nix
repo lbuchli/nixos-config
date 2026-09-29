@@ -90,12 +90,8 @@ let username = "demo"; in { config, lib, pkgs, ... }: {
         haskell.haskell
       ];
       userSettings = {
-        editor = {
-          fontSize = "15";
-        };
-        window = {
-          zoomLevel = "2";
-        };
+        "editor.fontSize" = 15;
+        "window.zoomLevel" = 2;
       };
     };
   };
