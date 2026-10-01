@@ -203,6 +203,15 @@
       enableSshSupport = true;
     };
 
+    programs.keepassxc = {
+        autostart = true;
+        enable = true;
+        settings = {
+            FdoSecrets.Enabled = true;
+        };
+    };
+    xdg.autostart.enable = true;
+
     # The state version is required and should stay at the version you
     # originally installed.
     home.stateVersion = "25.05";

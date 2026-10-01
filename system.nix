@@ -146,7 +146,6 @@
     libreoffice-fresh
     inkscape
     handbrake
-    keepassxc
     nextcloud-client
     kdePackages.filelight
     godot
