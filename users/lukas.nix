@@ -158,6 +158,7 @@
   programs.opencode = {
     enable = true;
     settings = { # schema: https://opencode.ai/docs/config/
+      lsp = true;
       provider = {
         llmhub = {
           options = {
@@ -168,6 +169,7 @@
           models = {
             "best-code" = { name = "best-code"; };
             "best-chat" = { name = "best-chat"; };
+            "best-reasoning" = { name = "best-reasoning"; };
           };
         };
         local-ollama = {
@@ -194,6 +196,15 @@
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
+
+  programs.keepassxc = {
+      autostart = true;
+      enable = true;
+      settings = {
+          FdoSecrets.Enabled = true;
+      };
+  };
+  xdg.autostart.enable = true;
 
   # The state version is required and should stay at the version you
   # originally installed.

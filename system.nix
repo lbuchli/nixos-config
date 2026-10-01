@@ -113,18 +113,21 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # TODO this should be in users/user.nix
   programs.zsh.enable = true;
-  users.users.lukas = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    description = "Lukas";
-    extraGroups = [ "networkmanager" "wheel" "docker" ]
-      ++ pkgs.lib.optional settings.hasVirtualization "libvirtd";
-  };
-  users.users.demo = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    description = "Demo Dominic";
-    extraGroups = [ "networkmanager" "wheel" ];
+  users.users = {
+    lukas = {
+        isNormalUser = true;
+        shell = pkgs.zsh;
+        description = "Lukas";
+        extraGroups = [ "networkmanager" "wheel" "docker" ]
+        ++ pkgs.lib.optional settings.hasVirtualization "libvirtd";
+    };
+  } // pkgs.lib.optionalAttrs settings.hasDemoUser {
+    demo = {
+        isNormalUser = true;
+        shell = pkgs.zsh;
+        description = "Demo Dominic";
+        extraGroups = [ "networkmanager" "wheel" ];
+    };
   };
 
   programs.firefox.enable = true;
