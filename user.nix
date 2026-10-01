@@ -163,6 +163,7 @@
     programs.opencode = {
       enable = true;
       settings = { # schema: https://opencode.ai/docs/config/
+        lsp = true;
         provider = {
           llmhub = {
             options = {
