@@ -174,6 +174,7 @@
             models = {
               "best-code" = { name = "best-code"; };
               "best-chat" = { name = "best-chat"; };
+              "best-reasoning" = { name = "best-reasoning"; };
             };
           };
           local-ollama = {
