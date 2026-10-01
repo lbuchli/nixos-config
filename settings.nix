@@ -5,5 +5,5 @@
   hasProprietaryNvidiaDrivers = { default = false; };
   usesZramSwap = { default = true; };
   hasDemoUser = { default = false; dubbo = true; };
-  localOllamaModels = { default = [ "qwen3.8-flash-next" ]; };
+  localOllamaModels = { default = [ "north-mini-code-1.0:q4_K_M" ]; ifs = [ "north-mini-code-1.0:q4_K_M" "qwen3.8-flash-next" ]; };
 })
