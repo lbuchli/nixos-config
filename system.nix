@@ -181,6 +181,7 @@
     gnupg
     pinentry-curses
     poppler-utils
+    wl-clipboard
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [
