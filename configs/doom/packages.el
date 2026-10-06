@@ -37,6 +37,9 @@
 (package! acp)
 (package! agent-shell)
 
+(package! wit-mode
+  :recipe (:host github :repo "JayKickliter/emacs-wit-mode"))
+
 ;; (package! org-remark)
 
 ;; If you'd like to disable a package included with Doom, you can do so here
