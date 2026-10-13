@@ -38,6 +38,7 @@
       launcher = {
         layout = "simple";
         categories = false;
+        app_grid = false;
 
         providers = {
           panels = {
