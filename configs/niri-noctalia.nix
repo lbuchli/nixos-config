@@ -1,87 +1,71 @@
-{
- enable = true;
- settings = {
-   bar = {
-     density = "normal";
-     position = "left";
-     showCapsule = false;
-     widgets = {
-       left = [
-         {
-           id = "ControlCenter";
-           useDistroLogo = false;
-           icon = "home";
-         }
-         {
-           id = "Network";
-         }
-         {
-           id = "Bluetooth";
-         }
-         {
-           id = "plugin:kde-connect";
-         }
-         {
-           id = "plugin:privacy-indicator";
-         }
-       ];
-       center = [
-         {
-           hideUnoccupied = false;
-           id = "Workspace";
-           labelMode = "none";
-         }
-       ];
-       right = [
-         {
-           alwaysShowPercentage = false;
-           id = "Battery";
-           warningThreshold = 30;
-         }
-         {
-           formatHorizontal = "HH:mm";
-           formatVertical = "HH mm";
-           id = "Clock";
-           useMonospacedFont = true;
-           usePrimaryColor = true;
-         }
-       ];
-     };
-   };
-   appLauncher = {
-     enableClipboardHistory = true;
-     terminalCommand = "konsole -e";
-     showCategories = false;
-   };
-   colorSchemes.predefinedScheme = "Ayu";
-   general = {
-     avatarImage = "";
-     radiusRatio = 0.2;
-   };
-   location = {
-     monthBeforeDay = false;
-     name = "Zurich, Switzerland";
-   };
- };
+{ username }: {
+  enable = true;
+  systemd.enable = true;
+  settings = {
+    theme = {
+      mode = "dark";
+      source = "wallpaper";
+      wallpaper_scheme = "m3-tonal-spot";
+      pure_black_dark = true;
+    };
 
- plugins = {
-   sources = [
-     {
-       enabled = true;
-       name = "Official Noctalia Plugins";
-       url = "https://github.com/noctalia-dev/noctalia-plugins";
-     }
-   ];
-   states = {
-     kde-connect = {
-       enabled = true;
-       sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-     };
-     privacy-indicator = {
-       enabled = true;
-       sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-     };
-   };
-   version = 2;
- };
+    wallpaper = {
+      enabled = true;
+      default.path = "/home/${username}/wallpaper.jpg";
+    };
+
+    bar.default = {
+      position = "left";
+      reserve_space = true;
+      concave_edge_corners = false;
+      radius = 0;
+      margin_ends = 0;
+      start = [
+        "launcher"
+        "privacy"
+        "session"
+      ];
+      center = [
+        "workspaces"
+      ];
+      end = [
+        "battery"
+        "clock"
+      ];
+    };
+
+    shell = {
+      launcher = {
+        layout = "simple";
+        categories = false;
+
+        providers = {
+          panels = {
+            global = true;
+          };
+          windows = {
+            global = true;
+          };
+        };
+      };
+      readline_shortcuts = true;
+    };
+
+    widget = {
+      gap = {
+        type = "spacer";
+        length = 200;
+      };
+      workspaces = {
+        style = "focus_hint";
+        show_icons = true;
+      };
+    };
+
+    lockscreen_widgets = {
+      widget.default = {
+        show_media = false;
+      };
+    };
+  };
 }

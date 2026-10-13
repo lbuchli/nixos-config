@@ -146,7 +146,7 @@
   in [
     # "Applications"
     qgisExt
-    libreoffice-fresh
+    libreoffice
     inkscape
     handbrake
     nextcloud-client

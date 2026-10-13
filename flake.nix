@@ -14,7 +14,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia/legacy-v4";
+      url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -38,6 +38,7 @@
             home-manager.nixosModules.home-manager {
               home-manager = {
                 useUserPackages = true;
+                backupFileExtension = "backup";
                 users = {
                     lukas = import ./users/lukas.nix { inherit hostname; inherit settings; inherit (inputs) noctalia doom-emacs; };
                 } // nixpkgs.lib.optionalAttrs settings.hasDemoUser {

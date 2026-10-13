@@ -65,14 +65,9 @@
     };
   }] ++ */ map link [ "doom" "niri" "zed" ]);
 
-  programs.noctalia-shell = import ../configs/niri-noctalia.nix;
+  programs.noctalia = import ../configs/niri-noctalia.nix { inherit username; };
   # wallpaper from https://unsplash.com/photos/aerial-view-of-pine-trees-in-mist-OYFHT4X5isg
   home.file."wallpaper.jpg".source = config.lib.file.mkOutOfStoreSymlink ../images/wallpaper.jpg;
-  home.file.".cache/noctalia/wallpapers.json" = {
-    text = builtins.toJSON {
-      defaultWallpaper = "/home/${username}/wallpaper.jpg";
-    };
-  };
 
   programs.bash.enable = false;
   programs.zsh = {

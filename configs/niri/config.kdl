@@ -349,11 +349,6 @@ layer-rule {
   place-within-backdrop true
 }
 
-debug {
-  // Allows notification actions and window activation from Noctalia.
-  honor-xdg-activation-with-invalid-serial
-}
-
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
@@ -371,6 +366,19 @@ debug {
 /-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
+}
+
+// Floating Noctalia settings window.
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 920; }
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
 }
 
 gestures {
@@ -398,8 +406,8 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: Konsole" { spawn "konsole"; }
     Mod+E hotkey-overlay-title="Open Text Editor: Emacs" { spawn "doom" "emacs"; }
     Mod+Return hotkey-overlay-title="Open popup terminal: Yakuake" { spawn "yakuake"; }
-    Mod+D hotkey-overlay-title="App Launcher" { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen" {  spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    Mod+D hotkey-overlay-title="App Launcher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen" {  spawn "noctalia" "msg" "session" "lock-and-suspend"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -641,7 +649,7 @@ binds {
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E {  spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle";  }
+    Mod+Shift+E { spawn "noctalia-shell" "msg" "panel-toggle" "session";  }
     Ctrl+Alt+Delete { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
