@@ -2,7 +2,7 @@
   (name: config: config.${hostname} or config.default)
 {
   hasVirtualization = { default = false; ifs = true; };
-  hasProprietaryNvidiaDrivers = { default = false; ifs = false; };
+  hasProprietaryNvidiaDrivers = { default = false; ifs = true; };
   usesZramSwap = { default = true; };
   hasDemoUser = { default = false; dubbo = true; };
   localOllamaModels = { default = [ "bonsai-2:9b" ]; ifs = [ "flint" "bonsai-2:9b" ]; };
