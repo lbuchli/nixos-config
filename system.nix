@@ -244,6 +244,10 @@
     package = pkgs.ollama-vulkan;
     # Optional: preload models, see https://ollama.com/library
     loadModels = settings.localOllamaModels;
+    syncModels = true;
+    environmentVariables = {
+        OLLAMA_CONTEXT_LENGTH = "128000"; # any less is not useful for agentic
+    };
   };
 
   services.pcscd.enable = true;

@@ -5,6 +5,6 @@
   hasProprietaryNvidiaDrivers = { default = false; ifs = true; };
   usesZramSwap = { default = true; };
   hasDemoUser = { default = false; dubbo = true; };
-  localOllamaModels = { default = [ "bonsai-2:9b" ]; ifs = [ "flint" "bonsai-2:9b" ]; };
+  localOllamaModels = { default = [ "bonsai-2:9b" "gemma4:e4b" ]; ifs = [ "bonsai-2:9b" "gemma4:e4b" "gemma4:12b" ]; };
   llmhubModels = { default = [ "best-code" "best-chat" "best-reasoning" "Qwen3.8-Flash-Next" ]; ifs = [ "best-code" "best-chat" "best-reasoning" "Qwen3.8-Flash-Next" "claude" ]; };
 })
