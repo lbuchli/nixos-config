@@ -93,6 +93,8 @@
 
   };
 
+  programs.nix-index.enable = true;
+
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
@@ -158,14 +160,12 @@
         llmhub = {
           options = {
             baseURL = "https://api.llmhub.infs.ai/v1";
-            models = [ "best-code" "best-chat" ];
             apiKey = "{file:~/nixos-secrets/llmhub}";
           };
-          models = {
-            "best-code" = { name = "best-code"; };
-            "best-chat" = { name = "best-chat"; };
-            "best-reasoning" = { name = "best-reasoning"; };
-          };
+          models = builtins.listToAttrs (map (item: {
+              name = item;
+              value = { name = item; };
+          }) settings.llmhubModels);
         };
         local-ollama = {
           options = {

@@ -1,8 +1,5 @@
 { config, pkgs, ... }: {
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
-    "nvidia-x11"
-    "nvidia-settings"
-  ];
+  nixpkgs.config.allowUnfree = true;
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {

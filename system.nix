@@ -148,7 +148,6 @@
     qgisExt
     libreoffice
     inkscape
-    handbrake
     nextcloud-client
     kdePackages.filelight
     godot
@@ -182,6 +181,7 @@
     pinentry-curses
     poppler-utils
     wl-clipboard
+    pciutils
 
     # rust
     (fenix.packages.x86_64-linux.latest.withComponents [

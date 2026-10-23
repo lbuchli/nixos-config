@@ -2,8 +2,9 @@
   (name: config: config.${hostname} or config.default)
 {
   hasVirtualization = { default = false; ifs = true; };
-  hasProprietaryNvidiaDrivers = { default = false; };
+  hasProprietaryNvidiaDrivers = { default = false; ifs = false; };
   usesZramSwap = { default = true; };
   hasDemoUser = { default = false; dubbo = true; };
-  localOllamaModels = { default = [ "north-mini-code-1.0:q4_K_M" ]; ifs = [ "north-mini-code-1.0:q4_K_M" "qwen3.8-flash-next" ]; };
+  localOllamaModels = { default = [ "bonsai-2:9b" ]; ifs = [ "flint" "bonsai-2:9b" ]; };
+  llmhubModels = { default = [ "best-code" "best-chat" "best-reasoning" "Qwen3.8-Flash-Next" ]; ifs = [ "best-code" "best-chat" "best-reasoning" "Qwen3.8-Flash-Next" "claude" ]; };
 })
