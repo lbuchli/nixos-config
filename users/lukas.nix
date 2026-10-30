@@ -158,16 +158,20 @@
       lsp = true;
       provider = {
         llmhub = {
+          npm = "@ai-sdk/openai-compatible";
+          name = "IFS LLMHub";
           options = {
             baseURL = "https://api.llmhub.infs.ai/v1";
             apiKey = "{file:~/nixos-secrets/llmhub}";
           };
           models = builtins.listToAttrs (map (item: {
-              name = item;
-              value = { name = item; };
+            name = item;
+            value = { name = item; };
           }) settings.llmhubModels);
         };
         local-ollama = {
+          npm = "@ai-sdk/openai-compatible";
+          name = "Ollama (local)";
           options = {
             baseURL = "http://localhost:11434/v1";
             models = settings.localOllamaModels;
