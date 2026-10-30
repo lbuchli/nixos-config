@@ -89,6 +89,7 @@
     shellAliases = {
       ll = "ls -alh";
       nixos-switch = "sudo nixos-rebuild --flake /home/lukas/nixos-config#${hostname} switch";
+      nixos-gc = "nix-collect-garbage --delete-older-than 7d && nixos-switch";
     };
 
   };
