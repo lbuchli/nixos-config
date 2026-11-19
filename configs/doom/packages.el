@@ -12,7 +12,8 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
-;; (package! typst-ts-mode) ;; -- wait for https://codeberg.org/meow_king/typst-ts-mode/issues/103 to be resolved
+(package! typst-ts-mode
+  :recipe (:host codeberg :repo "meow_king/typst-ts-mode"))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
@@ -32,6 +33,8 @@
 (package! maxima)
 (package! souffle-mode
   :recipe (:host github :repo "gbalats/souffle-mode"))
+(package! egglog-mode
+  :recipe (:host github :repo "epost/egglog-mode"))
 
 (package! shell-maker)
 (package! acp)

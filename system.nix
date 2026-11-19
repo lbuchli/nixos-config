@@ -159,6 +159,8 @@
     thunderbird
     gimp
     anki
+    tor-browser
+    vlc
 
     openssl
     openssl.dev
