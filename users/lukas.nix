@@ -165,7 +165,7 @@
       nativeBuildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/opencode \
-          --run 'exec ${pkgs.nono}/bin/nono run --allow /nix --profile nolabs-ai/opencode -- ${pkgs.opencode}/bin/opencode --standalone "$@"'
+          --run 'exec ${pkgs.nono}/bin/nono run --allow /nix --read-file ~/nixos-secrets/llmhub --profile nolabs-ai/opencode -- ${pkgs.opencode}/bin/opencode --standalone "$@"'
         '';
     };
     settings = { # schema: https://opencode.ai/docs/config/
