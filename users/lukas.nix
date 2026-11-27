@@ -17,6 +17,8 @@
     pandoc
     typst
     tinymist # typst lsp
+
+    playwright-mcp
   ];
 
   home = {
@@ -181,6 +183,15 @@
               name = item;
               value = { name = item; };
           }) settings.localOllamaModels);
+        };
+      };
+      mcp = {
+        playwright = {
+          type = "local";
+          command = [
+            "playwright-mcp"
+          ];
+          enabled = true;
         };
       };
       autoupdate = false;
