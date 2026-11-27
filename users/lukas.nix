@@ -165,7 +165,7 @@
       nativeBuildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/opencode \
-          --run 'exec ${pkgs.nono}/bin/nono run --allow /nix --read-file ~/nixos-secrets/llmhub --profile nolabs-ai/opencode -- ${pkgs.opencode}/bin/opencode --standalone "$@"'
+          --run 'exec ${pkgs.nono}/bin/nono run --allow /nix --allow /tmp --allow /dev/shm --allow ~/.ghc-wasm/ --allow ~/.cache --read-file ~/nixos-secrets/llmhub --profile nolabs-ai/opencode -- ${pkgs.opencode}/bin/opencode --standalone "$@"'
         '';
     };
     settings = { # schema: https://opencode.ai/docs/config/
@@ -198,13 +198,8 @@
       };
       mcp = {
         playwright = {
-          type = "local";
-          command = [
-            "playwright-mcp"
-            "--browser=firefox"
-            "--headless"
-            "--viewport-size=1280x720"
-          ];
+          type = "remote";
+          url = "http://localhost:8931/mcp";
           enabled = true;
         };
       };
@@ -213,6 +208,35 @@
         edit = "ask";
         bash = "ask";
       };
+    };
+  };
+
+  systemd.user.services.playwright-mcp = {
+    Unit = {
+      Description = "Playwright MCP Server (Firefox headless)";
+      After = [ "network.target" ];
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = ''
+        ${pkgs.playwright-mcp}/bin/playwright-mcp \
+          --browser=firefox \
+          --isolated \
+          --port=8931 \
+          --headless \
+          --viewport-size=1280x720
+      '';
+      Environment = [
+        "PLAYWRIGHT_BROWSERS_PATH=${pkgs.playwright-driver.browsers}"
+        "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1"
+      ];
+      Restart = "on-failure";
+      RestartSec = "3s";
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
     };
   };
 
