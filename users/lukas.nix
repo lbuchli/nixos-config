@@ -18,6 +18,8 @@
     typst
     tinymist # typst lsp
 
+    # opencode dependencies
+    nono
     playwright-mcp
   ];
 
@@ -157,6 +159,15 @@
 
   programs.opencode = {
     enable = true;
+    package = pkgs.symlinkJoin {
+      name = "opencode-nono";
+      paths = with pkgs; [ nono opencode ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/opencode \
+          --run 'exec ${pkgs.nono}/bin/nono run --allow /nix --profile nolabs-ai/opencode -- ${pkgs.opencode}/bin/opencode --standalone "$@"'
+        '';
+    };
     settings = { # schema: https://opencode.ai/docs/config/
       lsp = true;
       provider = {
@@ -190,6 +201,9 @@
           type = "local";
           command = [
             "playwright-mcp"
+            "--browser=firefox"
+            "--headless"
+            "--viewport-size=1280x720"
           ];
           enabled = true;
         };
